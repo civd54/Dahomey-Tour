@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --vert: #008751;       /* Vert du drapeau béninois */
+            --vert:  orange;       /* Vert du drapeau béninois */
             --jaune: #FCD116;      /* Jaune du drapeau béninois */
-            --rouge: #E8112D;      /* Rouge du drapeau béninois */
-            --dark: #1A1A1A;
+            --rouge: #006B41;      /* Rouge du drapeau béninois */
+            --dark: #1a1a2e;
             --light: #FFFFFF;
             --vert-fonce: #006B41;
-            --rouge-fonce: #C60E26;
+            --rouge-fonce: orange;
             --beige: #F5F1E6;
         }
         
@@ -26,7 +26,7 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, rgba(252, 209, 22, 0.5) 100%);
             color: var(--light);
             overflow-x: hidden;
             line-height: 1.7;
@@ -56,21 +56,23 @@
         
         /* Navigation - Mobile First */
         .navbar {
+            background-color: var(--jaune);
             position: fixed;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(26, 9, 51, 0.9);
+            color: #0a0f1f;
             backdrop-filter: blur(10px);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
             transition: all 0.4s ease;
             padding: 15px 20px;
         }
         
         .navbar.scrolled {
             padding: 10px 0;
-            background: rgba(26, 9, 51, 0.95);
+            background: var(--jaune);
+            
         }
         
         .navbar-container {
@@ -78,30 +80,17 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1400px;
-            margin: 0 auto;
+            margin: -60px auto;
+            
+        }
+        img {
+            height: 150px;
+    /* Adjust logo size as needed */
+            max-width: 100%;
+    /* Ensure logo doesn't overflow */
         }
         
-        .logo {
-            font-size: 24px; /* Taille réduite pour mobile */
-            font-weight: 800;
-            color: var(--jaune);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            white-space: nowrap; /* Empêcher le retour à la ligne */
-        }
-        
-        .logo span {
-            background: linear-gradient(90deg, var(--vert), var(--jaune));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 10px rgba(252, 209, 22, 0.7);
-        }
+       
         
         .menu-toggle {
             display: none;
@@ -126,7 +115,7 @@
         
         .nav-link {
             text-decoration: none;
-            color: var(--light);
+            color: var(--dark);
             font-weight: 500;
             font-size: 16px;
             position: relative;
@@ -165,7 +154,7 @@
             overflow: hidden;
             text-align: center;
             padding: 0 20px;
-            background: linear-gradient(135deg, rgba(26, 9, 51, 0.9) 0%, rgba(46, 16, 99, 0.8) 100%), 
+            background: linear-gradient(135deg, var(--jaune) 0%, rgba(255, 255, 255, 0.05) 100%), 
                         url('https://cdn.thecandytrail.com/wp-content/uploads/2025/04/ganvie-benin-1155x770.jpg?lossy=1&ssl=1') center/cover;
         }
         
@@ -176,8 +165,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(0, 135, 81, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(252, 209, 22, 0.15) 0%, transparent 40%);
+            background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.301) 0%, transparent 40%);
             z-index: 1;
         }
         
@@ -200,8 +189,8 @@
         .hero-title {
             font-size: 2.5rem; /* Taille réduite pour mobile */
             margin-bottom: 25px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, var(--vert), var(--jaune));
+            text-shadow: 0 3px 5px var(--jaune);
+            background: linear-gradient(0deg, white, white);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -281,6 +270,7 @@
             padding: 80px 20px; /* Padding réduit pour mobile */
             max-width: 1400px;
             margin: 0 auto;
+            background: linear-gradient(90deg, var(--jaune), rgba(255, 255, 255, 0.05));        
         }
         
         .section-title {
@@ -321,7 +311,10 @@
         }
         
         .event-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(90deg, var(--vert), var(--jaune));
+            background: linear-gradient(90deg, transparent, var(--jaune), transparent);
+            
+            
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -381,14 +374,14 @@
         .event-title {
             font-size: 1.4rem; /* Taille réduite */
             margin-bottom: 12px; /* Marge réduite */
-            color: var(--jaune);
+            color: orange;
             display: flex;
             align-items: center;
         }
         
         .event-title i {
             margin-right: 8px; /* Marge réduite */
-            color: var(--vert);
+            color: orange;
         }
         
         .event-date {
@@ -422,7 +415,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--jaune);
+            color: orange;
             font-weight: bold;
             font-size: 16px; /* Taille réduite */
         }
@@ -430,7 +423,7 @@
         .event-price {
             font-size: 1.6rem; /* Taille réduite */
             font-weight: 700;
-            color: var(--jaune);
+            color: orange;
             margin-bottom: 15px; /* Marge réduite */
             text-align: center;
             background: rgba(252, 209, 22, 0.1);
@@ -482,7 +475,7 @@
         
         /* Histoire du Dahomey */
         .history-section {
-            background: linear-gradient(135deg, var(--vert-fonce) 0%, var(--dark) 100%);
+            background: linear-gradient(135deg, var(--jaune) 0%, rgba(255, 255, 255, 0.05) 100%);
             position: relative;
             overflow: hidden;
             padding: 80px 20px; /* Padding réduit */
@@ -556,7 +549,7 @@
             width: 16px; /* Taille réduite */
             height: 16px; /* Taille réduite */
             border-radius: 50%;
-            background: var(--jaune);
+            background: orange;
             border: 3px solid var(--rouge);
         }
         
@@ -598,7 +591,7 @@
         
         /* Galerie des anciens événements */
         .gallery-section {
-            background: var(--dark);
+            background: rgba(255, 255, 255, 0.164);
             padding: 80px 20px; /* Padding réduit */
         }
         
@@ -628,7 +621,7 @@
         
         .gallery-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(252, 209, 22, 0.2);
+            box-shadow: 0 20px 40px rgba(252, 210, 22, 0.753);
             z-index: 2;
         }
         
@@ -796,7 +789,7 @@
         
         .contact-text h3 {
             margin-bottom: 5px; /* Marge réduite */
-            color: var(--jaune);
+            color: orange;
             font-size: 1.2rem; /* Taille réduite */
         }
         
@@ -840,7 +833,7 @@
             display: block;
             margin-bottom: 10px; /* Marge réduite */
             font-weight: 500;
-            color: var(--jaune);
+            color: orange;
             font-size: 1rem; /* Taille réduite */
         }
         
@@ -857,7 +850,7 @@
         }
         
         .form-control:focus {
-            border-color: var(--jaune);
+            border-color: orange;
             box-shadow: 0 0 0 3px rgba(252, 209, 22, 0.3);
             outline: none;
             background: rgba(20, 25, 40, 0.8);
@@ -870,7 +863,7 @@
         
         /* Footer */
         .footer {
-            background: linear-gradient(to top, #0a0f1f 0%, #121828 100%);
+            background: linear-gradient(to top,#0a0f1f 0%, rgba(255, 255, 255, 0.05) 100%);
             color: var(--light);
             padding: 60px 0 25px; /* Padding réduit */
             position: relative;
@@ -1100,8 +1093,7 @@
     <nav class="navbar"> 
         <div class="navbar-container">
             <a href="#" class="logo">
-                <i class="fas fa-crown"></i>
-                <span>DAHOMEY</span> TOUR
+                <img src="logo-removebg-preview (1).png" alt="logo">
             </a>
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
