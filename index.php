@@ -1,4 +1,8 @@
- <!DOCTYPE html>
+<?php
+// Vérification de l'authentification
+session_start();
+?>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +34,7 @@
             color: var(--light);
             overflow-x: hidden;
             line-height: 1.7;
-            min-width: 320px; /* Largeur minimale pour éviter le dépassement */
+            min-width: 320px;
         }
         
         h1, h2, h3, h4 {
@@ -54,24 +58,23 @@
             animation: fadeIn 1s ease-out forwards;
         }
         
-        /* Navigation - Mobile First */
+        /* Navigation - Logo corrigé */
         .navbar {
             position: fixed; 
-            top: 0px;
-            left: 0px;
-            height: 13%;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             background: rgba(27, 14, 48, 0.9);
             backdrop-filter: blur(10px);
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
             transition: all 0.4s ease;
-            padding: 0px 0px;
+            padding: 10px 0;
             text-align: center;
         }
         
         .navbar.scrolled {
-            padding: 25px 50px;
+            padding: 5px 0;
             background: rgba(26, 9, 51, 0.95);
         }
         
@@ -80,29 +83,32 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1400px;
-            margin: 10 auto;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 50px;
         }
         
         .logo {
-            font-size: 20px; /* Taille réduite pour mobile */
-            font-weight: 790;
-            color: var(--jaune);
-            text-decoration: none;
+            height: 100%;
             display: flex;
             align-items: center;
-            transition: all 0.3s ease;
-            white-space: nowrap; /* Empêcher le retour à la ligne */
         }
         
-        .logo span {
-            background: linear-gradient(90deg, var(--vert), var(--jaune));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
         }
         
-        .logo:hover {
-            transform: scale(1.55);
-            text-shadow: 0 0 10px rgba(252, 209, 22, 0.7);
+        .logo:hover img {
+            transform: scale(1.05);
         }
         
         .menu-toggle {
@@ -113,7 +119,6 @@
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 1001;
-            color: #ffffff;
         }
         
         .nav-links {
@@ -123,7 +128,7 @@
         }
         
         .nav-item {
-            margin-left: 20px;
+            margin-left: 25px;
             position: relative;
         }
         
@@ -160,7 +165,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            min-height: 600px; /* Hauteur minimale */
+            min-height: 600px;
             position: relative;
             display: flex;
             align-items: center;
@@ -169,7 +174,7 @@
             text-align: center;
             padding: 0 20px;
             background: linear-gradient(135deg, rgba(32, 9, 68, 0.9) 0%, rgba(24, 5, 58, 0.8) 100%), 
-                        url('./1.jpg') center/cover;
+                        url('./uploads/hero-bg.jpg') center/cover;
         }
         
         .hero::before {
@@ -201,7 +206,7 @@
         }
         
         .hero-title {
-            font-size: 2.5rem; /* Taille réduite pour mobile */
+            font-size: 2.5rem;
             margin-bottom: 25px;
             text-shadow: 0 5px 15px rgba(26, 25, 25, 0.5);
             background: linear-gradient(45deg, var(--vert), var(--jaune));
@@ -212,7 +217,7 @@
         }
         
         .hero-subtitle {
-            font-size: 1.1rem; /* Taille réduite pour mobile */
+            font-size: 1.1rem;
             margin-bottom: 40px;
             font-weight: 300;
             color: var(--light);
@@ -223,7 +228,7 @@
         
         .btn {
             display: inline-block;
-            padding: 12px 30px; /* Taille réduite pour mobile */
+            padding: 12px 30px;
             background: linear-gradient(45deg, var(--vert), var(--jaune));
             color: var(--dark);
             text-decoration: none;
@@ -237,8 +242,8 @@
             box-shadow: 0 10px 20px rgba(252, 209, 22, 0.3);
             letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 14px; /* Taille réduite pour mobile */
-            margin: 10px 5px; /* Marge réduite */
+            font-size: 14px;
+            margin: 10px 5px;
             z-index: 1;
         }
         
@@ -279,18 +284,23 @@
             color: white;
         }
         
+        .btn-vert {
+            background: linear-gradient(45deg, var(--vert), var(--vert-fonce));
+            color: white;
+        }
+        
         /* Sections communes */
         .section {
-            padding: 80px 20px; /* Padding réduit pour mobile */
+            padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px; /* Marge réduite */
+            margin-bottom: 60px;
             position: relative;
-            font-size: 2rem; /* Taille réduite pour mobile */
+            font-size: 2rem;
             color: var(--jaune);
         }
         
@@ -309,8 +319,8 @@
         .section-subtitle {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 40px; /* Marge réduite */
-            font-size: 1rem; /* Taille réduite pour mobile */
+            margin: 0 auto 40px;
+            font-size: 1rem;
             color: var(--light);
             opacity: 0.9;
         }
@@ -318,9 +328,9 @@
         /* Événements */
         .events-container {
             display: grid;
-            grid-template-columns: 1fr; /* Colonne unique sur mobile */
-            gap: 30px; /* Espacement réduit */
-            margin-top: 30px; /* Marge réduite */
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
         }
         
         .event-card {
@@ -348,7 +358,7 @@
         }
         
         .event-image {
-            height: 200px; /* Hauteur réduite pour mobile */
+            height: 200px;
             overflow: hidden;
             position: relative;
         }
@@ -366,59 +376,59 @@
         
         .event-badge {
             position: absolute;
-            top: 15px; /* Position ajustée */
-            right: 15px; /* Position ajustée */
+            top: 15px;
+            right: 15px;
             background: linear-gradient(45deg, var(--rouge), var(--rouge-fonce));
             color: white;
-            padding: 6px 12px; /* Taille réduite */
+            padding: 6px 12px;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 12px; /* Taille réduite */
+            font-size: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .event-content {
-            padding: 20px; /* Padding réduit */
+            padding: 20px;
         }
         
         .event-title {
-            font-size: 1.4rem; /* Taille réduite */
-            margin-bottom: 12px; /* Marge réduite */
+            font-size: 1.4rem;
+            margin-bottom: 12px;
             color: var(--jaune);
             display: flex;
             align-items: center;
         }
         
         .event-title i {
-            margin-right: 8px; /* Marge réduite */
+            margin-right: 8px;
             color: var(--vert);
         }
         
         .event-date {
             display: flex;
             align-items: center;
-            margin-bottom: 12px; /* Marge réduite */
+            margin-bottom: 12px;
             color: var(--light);
-            font-size: 0.95rem; /* Taille réduite */
+            font-size: 0.95rem;
         }
         
         .event-date i {
-            margin-right: 8px; /* Marge réduite */
+            margin-right: 8px;
             color: var(--rouge);
         }
         
         .event-features {
-            margin-bottom: 20px; /* Marge réduite */
-            padding-left: 5px; /* Padding réduit */
+            margin-bottom: 20px;
+            padding-left: 5px;
         }
         
         .event-feature {
             display: flex;
             align-items: center;
-            margin-bottom: 10px; /* Marge réduite */
+            margin-bottom: 10px;
             position: relative;
-            padding-left: 25px; /* Padding réduit */
-            font-size: 0.9rem; /* Taille réduite */
+            padding-left: 25px;
+            font-size: 0.9rem;
         }
         
         .event-feature:before {
@@ -427,32 +437,39 @@
             left: 0;
             color: var(--jaune);
             font-weight: bold;
-            font-size: 16px; /* Taille réduite */
+            font-size: 16px;
         }
         
         .event-price {
-            font-size: 1.6rem; /* Taille réduite */
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--jaune);
-            margin-bottom: 15px; /* Marge réduite */
+            margin-bottom: 15px;
             text-align: center;
             background: rgba(252, 209, 22, 0.1);
-            padding: 8px; /* Padding réduit */
+            padding: 8px;
             border-radius: 10px;
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         /* Services */
         .services-container {
             display: grid;
-            grid-template-columns: 1fr; /* Colonne unique sur mobile */
-            gap: 25px; /* Espacement réduit */
-            margin-top: 30px; /* Marge réduite */
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 30px;
         }
         
         .service-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            padding: 30px 20px; /* Padding réduit */
+            padding: 30px 20px;
             text-align: center;
             transition: all 0.4s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -466,21 +483,21 @@
         }
         
         .service-icon {
-            font-size: 2.5rem; /* Taille réduite */
-            margin-bottom: 20px; /* Marge réduite */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             background: linear-gradient(45deg, var(--vert), var(--jaune));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
         .service-title {
-            font-size: 1.3rem; /* Taille réduite */
-            margin-bottom: 15px; /* Marge réduite */
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             color: var(--jaune);
         }
         
         .service-card p {
-            font-size: 0.95rem; /* Taille réduite */
+            font-size: 0.95rem;
         }
         
         /* Histoire du Dahomey */
@@ -488,7 +505,7 @@
             background: linear-gradient(135deg, var(--vert-fonce) 0%, var(--dark) 100%);
             position: relative;
             overflow: hidden;
-            padding: 80px 20px; /* Padding réduit */
+            padding: 80px 20px;
         }
         
         .history-section::before {
@@ -498,7 +515,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80') center/cover no-repeat;
+            background: url('./uploads/history-bg.jpg') center/cover no-repeat;
             opacity: 0.1;
         }
         
@@ -506,8 +523,8 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            flex-direction: column; /* Colonne unique sur mobile */
-            gap: 40px; /* Espacement réduit */
+            flex-direction: column;
+            gap: 40px;
         }
         
         .history-text {
@@ -516,8 +533,8 @@
         }
         
         .history-title {
-            font-size: 2.2rem; /* Taille réduite */
-            margin-bottom: 20px; /* Marge réduite */
+            font-size: 2.2rem;
+            margin-bottom: 20px;
             color: var(--jaune);
             position: relative;
             display: inline-block;
@@ -534,8 +551,8 @@
         }
         
         .history-text p {
-            margin-bottom: 15px; /* Marge réduite */
-            font-size: 1rem; /* Taille réduite */
+            margin-bottom: 15px;
+            font-size: 1rem;
             line-height: 1.8;
         }
         
@@ -546,18 +563,18 @@
         }
         
         .timeline-item {
-            margin-bottom: 30px; /* Marge réduite */
+            margin-bottom: 30px;
             position: relative;
-            padding-left: 30px; /* Padding réduit */
+            padding-left: 30px;
         }
         
         .timeline-item::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 8px; /* Position ajustée */
-            width: 16px; /* Taille réduite */
-            height: 16px; /* Taille réduite */
+            top: 8px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: var(--jaune);
             border: 3px solid var(--rouge);
@@ -566,10 +583,10 @@
         .timeline-item::after {
             content: '';
             position: absolute;
-            left: 8px; /* Position ajustée */
-            top: 24px; /* Position ajustée */
+            left: 8px;
+            top: 24px;
             width: 2px;
-            height: calc(100% + 15px); /* Hauteur ajustée */
+            height: calc(100% + 15px);
             background: var(--rouge);
         }
         
@@ -578,38 +595,30 @@
         }
         
         .timeline-year {
-            font-size: 1.3rem; /* Taille réduite */
+            font-size: 1.3rem;
             color: var(--jaune);
-            margin-bottom: 8px; /* Marge réduite */
+            margin-bottom: 8px;
             font-weight: 700;
         }
         
         .timeline-content {
             background: rgba(255, 255, 255, 0.05);
-            padding: 15px; /* Padding réduit */
+            padding: 15px;
             border-radius: 10px;
             border-left: 3px solid var(--jaune);
         }
         
-        .timeline-content h3 {
-            font-size: 1.2rem; /* Taille réduite */
-        }
-        
-        .timeline-content p {
-            font-size: 0.95rem; /* Taille réduite */
-        }
-        
-        /* Galerie des anciens événements */
+        /* Galerie */
         .gallery-section {
             background: var(--dark);
-            padding: 80px 20px; /* Padding réduit */
+            padding: 80px 20px;
         }
         
         .gallery-container {
             display: grid;
-            grid-template-columns: 1fr; /* Colonne unique sur mobile */
-            gap: 25px; /* Espacement réduit */
-            margin-top: 30px; /* Marge réduite */
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 30px;
         }
         
         .gallery-item {
@@ -621,7 +630,7 @@
             transform: scale(0.95);
             opacity: 0;
             transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 280px; /* Hauteur réduite */
+            height: 280px;
         }
         
         .gallery-item.animate {
@@ -656,31 +665,31 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 20px; /* Padding réduit */
+            padding: 20px;
             opacity: 1;
             transition: opacity 0.4s ease;
         }
         
         .event-name {
-            font-size: 1.2rem; /* Taille réduite */
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--jaune);
-            margin-bottom: 8px; /* Marge réduite */
+            margin-bottom: 8px;
         }
         
         .event-date {
             color: var(--light);
-            font-size: 0.9rem; /* Taille réduite */
+            font-size: 0.9rem;
         }
         
         .view-photos {
-            margin-top: 12px; /* Marge réduite */
+            margin-top: 12px;
             display: inline-block;
-            padding: 6px 15px; /* Padding réduit */
+            padding: 6px 15px;
             background: var(--rouge);
             color: white;
             border-radius: 30px;
-            font-size: 0.85rem; /* Taille réduite */
+            font-size: 0.85rem;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.4s ease;
@@ -691,7 +700,7 @@
             transform: translateY(0);
         }
         
-        /* Modal pour les photos */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -702,7 +711,7 @@
             background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             overflow: auto;
-            padding: 20px; /* Padding réduit */
+            padding: 20px;
         }
         
         .modal-content {
@@ -715,17 +724,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px; /* Marge réduite */
+            margin-bottom: 20px;
         }
         
         .modal-title {
-            font-size: 1.5rem; /* Taille réduite */
+            font-size: 1.5rem;
             color: var(--jaune);
         }
         
         .close-modal {
             color: white;
-            font-size: 2rem; /* Taille réduite */
+            font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -737,12 +746,12 @@
         
         .modal-gallery {
             display: grid;
-            grid-template-columns: 1fr; /* Colonne unique sur mobile */
-            gap: 15px; /* Espacement réduit */
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
         
         .modal-photo {
-            height: 200px; /* Hauteur réduite */
+            height: 200px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -762,13 +771,13 @@
         /* Contact */
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr; /* Colonne unique sur mobile */
-            gap: 30px; /* Espacement réduit */
-            margin-top: 30px; /* Marge réduite */
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
         }
         
         .contact-info, .contact-form {
-            padding: 25px; /* Padding réduit */
+            padding: 25px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -778,46 +787,46 @@
         
         .contact-item {
             display: flex;
-            margin-bottom: 25px; /* Marge réduite */
+            margin-bottom: 25px;
             align-items: center;
         }
         
         .contact-icon {
-            width: 50px; /* Taille réduite */
-            height: 50px; /* Taille réduite */
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, var(--vert), var(--vert-fonce));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px; /* Marge réduite */
+            margin-right: 15px;
             color: white;
-            font-size: 1.2rem; /* Taille réduite */
+            font-size: 1.2rem;
             flex-shrink: 0;
             box-shadow: 0 8px 20px rgba(0, 135, 81, 0.4);
         }
         
         .contact-text h3 {
-            margin-bottom: 5px; /* Marge réduite */
+            margin-bottom: 5px;
             color: var(--jaune);
-            font-size: 1.2rem; /* Taille réduite */
+            font-size: 1.2rem;
         }
         
         .contact-text p {
             color: var(--light);
             opacity: 0.9;
-            font-size: 0.95rem; /* Taille réduite */
+            font-size: 0.95rem;
         }
         
         .social-links {
             display: flex;
-            gap: 15px; /* Espacement réduit */
-            margin-top: 15px; /* Marge réduite */
+            gap: 15px;
+            margin-top: 15px;
         }
         
         .social-link {
-            width: 40px; /* Taille réduite */
-            height: 40px; /* Taille réduite */
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(255,255,255,0.08);
             display: flex;
@@ -825,7 +834,7 @@
             justify-content: center;
             color: var(--light);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 1.1rem; /* Taille réduite */
+            font-size: 1.1rem;
         }
         
         .social-link:hover {
@@ -836,24 +845,24 @@
         }
         
         .form-group {
-            margin-bottom: 20px; /* Marge réduite */
+            margin-bottom: 20px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 10px; /* Marge réduite */
+            margin-bottom: 10px;
             font-weight: 500;
             color: var(--jaune);
-            font-size: 1rem; /* Taille réduite */
+            font-size: 1rem;
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px; /* Padding réduit */
+            padding: 12px 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem; /* Taille réduite */
+            font-size: 0.95rem;
             transition: all 0.4s ease;
             background: rgba(20, 25, 40, 0.5);
             color: var(--light);
@@ -867,7 +876,7 @@
         }
         
         textarea.form-control {
-            min-height: 150px; /* Hauteur réduite */
+            min-height: 150px;
             resize: vertical;
         }
         
@@ -875,7 +884,7 @@
         .footer {
             background: linear-gradient(to top, #0a0f1f 0%, #121828 100%);
             color: var(--light);
-            padding: 60px 0 25px; /* Padding réduit */
+            padding: 60px 0 25px;
             position: relative;
             overflow: hidden;
         }
@@ -893,17 +902,17 @@
         .footer-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px; /* Padding réduit */
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr; /* Colonne unique sur mobile */
-            gap: 40px; /* Espacement réduit */
+            grid-template-columns: 1fr;
+            gap: 40px;
         }
         
         .footer-col h3 {
-            font-size: 1.4rem; /* Taille réduite */
-            margin-bottom: 25px; /* Marge réduite */
+            font-size: 1.4rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 12px; /* Padding réduit */
+            padding-bottom: 12px;
             color: var(--jaune);
         }
         
@@ -923,7 +932,7 @@
         }
         
         .footer-links li {
-            margin-bottom: 12px; /* Marge réduite */
+            margin-bottom: 12px;
         }
         
         .footer-links a {
@@ -932,11 +941,11 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            font-size: 0.95rem; /* Taille réduite */
+            font-size: 0.95rem;
         }
         
         .footer-links a i {
-            margin-right: 8px; /* Marge réduite */
+            margin-right: 8px;
             color: var(--vert);
             transition: all 0.3s ease;
         }
@@ -948,128 +957,76 @@
         
         .copyright {
             text-align: center;
-            padding-top: 30px; /* Padding réduit */
-            margin-top: 40px; /* Marge réduite */
+            padding-top: 30px;
+            margin-top: 40px;
             border-top: 1px solid rgba(255,255,255,0.08);
             color: #777;
-            font-size: 0.85rem; /* Taille réduite */
+            font-size: 0.85rem;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
         }
         
-        /* Animation des confettis */
-        .confetti {
+        /* Admin Link */
+        .admin-link {
             position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: var(--rouge);
-            border-radius: 50%;
-            z-index: 9999;
-            opacity: 0;
-            pointer-events: none;
+            bottom: 20px;
+            right: 20px;
+            background: var(--rouge);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(232, 17, 45, 0.3);
+            transition: all 0.3s ease;
         }
         
-        /* Media Queries pour différentes tailles d'écrans */
+        .admin-link:hover {
+            background: var(--rouge-fonce);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
         @media (min-width: 576px) {
-            /* Téléphones en mode paysage et tablettes */
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            .events-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-            }
-            .services-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-            }
-            .gallery-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-            }
-            .modal-gallery {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-            }
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .events-container { grid-template-columns: repeat(2, 1fr); }
+            .services-container { grid-template-columns: repeat(2, 1fr); }
+            .gallery-container { grid-template-columns: repeat(2, 1fr); }
+            .modal-gallery { grid-template-columns: repeat(2, 1fr); }
         }
         
         @media (min-width: 768px) {
-            /* Tablettes en mode paysage */
-            .navbar-container {
-                padding: 20px 30px;
-            }
-            .menu-toggle {
-                display: none;
-            }
-            .nav-links {
-                display: flex;
-                position: static;
-                height: auto;
-                background: transparent;
-                width: auto;
-                padding: 0;
-            }
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            .section {
-                padding: 100px 30px;
-            }
-            .section-title {
-                font-size: 2.5rem;
-            }
-            .history-content {
-                flex-direction: row; /* Disposition en ligne */
-            }
-            .contact-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-            }
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-            }
+            .navbar-container { padding: 0 30px; }
+            .menu-toggle { display: none; }
+            .nav-links { display: flex; }
+            .hero-title { font-size: 3.5rem; }
+            .section { padding: 100px 30px; }
+            .section-title { font-size: 2.5rem; }
+            .history-content { flex-direction: row; }
+            .contact-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
         }
         
         @media (min-width: 992px) {
-            /* Ordinateurs portables */
-            .hero-title {
-                font-size: 4rem;
-            }
-            .section-title {
-                font-size: 2.8rem;
-            }
-            .events-container {
-                grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-            }
-            .services-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-            }
-            .gallery-container {
-                grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-            }
-            .modal-gallery {
-                grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-            }
-            .footer-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-            }
+            .hero-title { font-size: 4rem; }
+            .section-title { font-size: 2.8rem; }
+            .events-container { grid-template-columns: repeat(3, 1fr); }
+            .services-container { grid-template-columns: repeat(4, 1fr); }
+            .gallery-container { grid-template-columns: repeat(3, 1fr); }
+            .modal-gallery { grid-template-columns: repeat(3, 1fr); }
+            .footer-container { grid-template-columns: repeat(4, 1fr); }
         }
         
         @media (min-width: 1200px) {
-            /* Grands écrans */
-            .hero-title {
-                font-size: 4.5rem;
-            }
-            .gallery-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-            }
+            .hero-title { font-size: 4.5rem; }
+            .gallery-container { grid-template-columns: repeat(4, 1fr); }
         }
         
-        /* Menu mobile */
         @media (max-width: 767px) {
-            .menu-toggle {
-                display: block;
-            }
-            
+            .menu-toggle { display: block; }
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -1083,18 +1040,9 @@
                 transition: all 0.5s ease;
                 z-index: 1000;
             }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-item {
-                margin: 0 0 20px;
-            }
-            
-            .nav-link {
-                font-size: 1.2rem;
-            }
+            .nav-links.active { right: 0; }
+            .nav-item { margin: 0 0 20px; }
+            .nav-link { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -1102,9 +1050,11 @@
     <!-- Navigation -->
     <nav class="navbar"> 
         <div class="navbar-container">
-            <a href="#" class="logo" style=" background-size: 200px auto; width: 170px;height: 37px; border-radius: 9px; align-items: center;position:a;">
-             <img src="./logo.png" width="175px"  alt="">
-            </a>
+            <div class="logo-container">
+                <a href="index.php" class="logo">
+                    <img src="uploads/logo.png" alt="Dahomey Tour Logo">
+                </a>
+            </div>
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1115,6 +1065,7 @@
                 <li class="nav-item"><a href="#histoire" class="nav-link">Histoire</a></li>
                 <li class="nav-item"><a href="#galerie" class="nav-link">Galerie</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="tickets.php" class="nav-link btn-vert" style="padding: 8px 15px; border-radius: 25px;">Acheter Tickets</a></li>
             </ul>
         </div>
     </nav>
@@ -1122,44 +1073,54 @@
     <!-- Hero Section -->
     <section class="hero" id="accueil">
         <div class="hero-content">
-            <h1 class="hero-title"> <br><br><br>Vivez l’énergie du Bénin autrement</h1>
-            <p class="hero-subtitle">Dahomey Tour, c’est plus que des soirées : c’est une vibe, une culture, une fierté.  
-Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque moment en souvenir inoubliable.</p>
+            <h1 class="hero-title">Vivez l'énergie du Bénin autrement</h1>
+            <p class="hero-subtitle">Dahomey Tour, c'est plus que des soirées : c'est une vibe, une culture, une fierté.  
+            Sur les plages, dans les rues ou au cœur de l'histoire, on transforme chaque moment en souvenir inoubliable.</p>
             <div>
                 <a href="#evenements" class="btn">Découvrir les événements</a>
-                <a href="#contact" class="btn btn-outline">Contactez-nous</a>
+                <a href="tickets.php" class="btn btn-outline">Acheter des tickets</a>
+                <a href="#contact" class="btn btn-rouge">Contactez-nous</a>
             </div>
         </div>
     </section>
 
-       <!-- Galerie des anciens événements -->
+    <!-- Galerie des anciens événements -->
     <section class="gallery-section" id="galerie">
         <h2 class="section-title">Galerie des Anciens Événements</h2>
         <p class="section-subtitle">Revivez les moments forts de nos événements passés</p>
         
         <div class="gallery-container">
-            <!-- Événement 1 -->
-            <div class="gallery-item">
-                <img src="./6.jpg" alt="Hydrokeke Vibes 2025">
-                <div class="gallery-overlay">
-                    <div class="event-name">Hydrokeke Vibes 2024</div>
-                    <div class="event-date">12 Juillet 2025 - Plage Fidjrossè</div>
-                    <div class="view-photos" data-event="hydrokeke-2024">Voir les photos</div>
-                </div>
-            </div>
+            <?php
+            // Connexion à la base de données
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "dahomey_tour";
             
-           
-            
-            <!-- Événement 3 -->
-            <div class="gallery-item">
-                <img src="./5.jpg" alt="Beach Festival 2023">
-                <div class="gallery-overlay">
-                    <div class="event-name">tour de la Venise d'Afrique</div>
-                    <div class="event-date"> 15 février 2025 </div>
-                    <div class="view-photos" data-event="beach-2023">Voir les photos</div>
-                </div>
-            </div>
-             
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
+                // Récupérer les événements de la galerie
+                $stmt = $conn->prepare("SELECT * FROM galerie ORDER BY date DESC LIMIT 8");
+                $stmt->execute();
+                $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($events as $event) {
+                    echo '
+                    <div class="gallery-item">
+                        <img src="uploads/galerie/' . htmlspecialchars($event['image']) . '" alt="' . htmlspecialchars($event['nom']) . '">
+                        <div class="gallery-overlay">
+                            <div class="event-name">' . htmlspecialchars($event['nom']) . '</div>
+                            <div class="event-date">' . date('d F Y', strtotime($event['date'])) . ' - ' . htmlspecialchars($event['lieu']) . '</div>
+                            <div class="view-photos" data-event="' . $event['id'] . '">Voir les photos</div>
+                        </div>
+                    </div>';
+                }
+            } catch(PDOException $e) {
+                echo "Erreur: " . $e->getMessage();
+            }
+            ?>
         </div>
     </section>
 
@@ -1167,7 +1128,7 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
     <div id="photo-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modal-event-title">Hydrokeke Vibes 2024</h2>
+                <h2 class="modal-title" id="modal-event-title"></h2>
                 <span class="close-modal">&times;</span>
             </div>
             <div class="modal-gallery" id="modal-gallery-content">
@@ -1182,37 +1143,27 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
         <p class="section-subtitle">Nous transformons vos idées en événements mémorables</p>
         
         <div class="services-container">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <h3 class="service-title">Animation Musicale</h3>
-                <p>DJs professionnels, sound systems de qualité et playlists personnalisées pour créer l'ambiance parfaite pour votre événement.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-cocktail"></i>
-                </div>
-                <h3 class="service-title">Bar Mobile & Catering</h3>
-                <p>Service de bar mobile avec cocktails créatifs et options de restauration pour satisfaire tous vos invités.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-camera"></i>
-                </div>
-                <h3 class="service-title">Photographie Événementielle</h3>
-                <p>Photographes professionnels pour immortaliser chaque moment magique de votre événement.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <h3 class="service-title">Idées Créatives</h3>
-                <p>Concept unique, décoration sur mesure et animations originales pour un événement inoubliable.</p>
-            </div>
+            <?php
+            try {
+                // Récupérer les services
+                $stmt = $conn->prepare("SELECT * FROM services ORDER BY ordre");
+                $stmt->execute();
+                $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($services as $service) {
+                    echo '
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas ' . htmlspecialchars($service['icone']) . '"></i>
+                        </div>
+                        <h3 class="service-title">' . htmlspecialchars($service['titre']) . '</h3>
+                        <p>' . htmlspecialchars($service['description']) . '</p>
+                    </div>';
+                }
+            } catch(PDOException $e) {
+                echo "Erreur: " . $e->getMessage();
+            }
+            ?>
         </div>
     </section>
 
@@ -1220,134 +1171,117 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
     <section class="history-section" id="histoire">
         <div class="history-content">
             <div class="history-text">
-                <h2 class="history-title">L'Épopée du Royaume de Dahomey</h2>
-                <p>Le Dahomey, royaume emblématique de l'Afrique de l'Ouest, a marqué l'histoire par sa puissance militaire, son organisation sociale et sa riche culture. Fondé au 17ème siècle, ce royaume a prospéré pendant près de trois siècles avant de devenir une partie intégrante de l'actuel Bénin.</p>
-                
-                <p>Connu pour ses célèbres Amazones - une unité militaire exclusivement féminine - le Dahomey impressionnait par sa discipline et sa stratégie militaire. Ces guerrières d'élite, redoutées dans toute la région, étaient au service du roi et constituaient l'une des premières unités militaires féminines modernes.</p>
-                
-                <p>L'organisation sociale du Dahomey était remarquablement structurée, avec un système administratif complexe et une économie basée sur l'agriculture, le commerce et les arts. Le royaume était particulièrement réputé pour ses sculptures sur bois, ses bas-reliefs et ses tissus richement décorés.</p>
-                
-                <p>Le nom "Dahomey" signifie "dans le ventre de Dan" en référence à Dan, un roi fondateur. Ce nom symbolisait l'unité et la force du royaume, des valeurs que nous perpétuons à travers Dahomey Tour en créant des événements qui unissent les gens et célèbrent notre riche héritage.</p>
+                <?php
+                try {
+                    // Récupérer le contenu de l'histoire
+                    $stmt = $conn->prepare("SELECT * FROM histoire WHERE id = 1");
+                    $stmt->execute();
+                    $histoire = $stmt->fetch(PDO::FETCH_ASSOC);
+                    
+                    if ($histoire) {
+                        echo '<h2 class="history-title">' . htmlspecialchars($histoire['titre']) . '</h2>';
+                        echo nl2br(htmlspecialchars($histoire['contenu']));
+                    }
+                } catch(PDOException $e) {
+                    echo "Erreur: " . $e->getMessage();
+                }
+                ?>
             </div>
             
             <div class="history-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-year">1600 - 1620</div>
-                    <div class="timeline-content">
-                        <h3>Fondation du Royaume</h3>
-                        <p>Houégbadja établit les fondations du royaume autour d'Abomey. Il crée un système administratif sophistiqué et pose les bases d'une monarchie puissante.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-year">1708 - 1732</div>
-                    <div class="timeline-content">
-                        <h3>L'Ère d'Agadja</h3>
-                        <p>Le roi Agadja étend le territoire jusqu'à la côte atlantique. Il crée le corps des Amazones, guerrières d'élite qui deviendront légendaires pour leur bravoure.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-year">1818 - 1858</div>
-                    <div class="timeline-content">
-                        <h3>L'Âge d'Or de Guézo</h3>
-                        <p>Sous Guézo, le Dahomey atteint son apogée. Il modernise l'armée, développe l'agriculture (huile de palme) et résiste aux pressions coloniales.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-year">1889 - 1894</div>
-                    <div class="timeline-content">
-                        <h3>La Résistance de Béhanzin</h3>
-                        <p>Béhanzin, dernier roi indépendant, mène une résistance héroïque contre les forces coloniales françaises avant d'être vaincu et exilé.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-year">1975</div>
-                    <div class="timeline-content">
-                        <h3>Naissance du Bénin</h3>
-                        <p>Après l'indépendance en 1960, le pays est rebaptisé République Populaire du Bénin en 1975, rendant hommage à son riche héritage précolonial.</p>
-                    </div>
-                </div>
+                <?php
+                try {
+                    // Récupérer la timeline
+                    $stmt = $conn->prepare("SELECT * FROM timeline ORDER BY annee");
+                    $stmt->execute();
+                    $timeline = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    
+                    foreach ($timeline as $item) {
+                        echo '
+                        <div class="timeline-item">
+                            <div class="timeline-year">' . htmlspecialchars($item['annee']) . '</div>
+                            <div class="timeline-content">
+                                <h3>' . htmlspecialchars($item['titre']) . '</h3>
+                                <p>' . htmlspecialchars($item['description']) . '</p>
+                            </div>
+                        </div>';
+                    }
+                } catch(PDOException $e) {
+                    echo "Erreur: " . $e->getMessage();
+                }
+                ?>
             </div>
         </div>
     </section>
-<!-- Événements -->
+
+    <!-- Événements -->
     <section class="section" id="evenements">
         <h2 class="section-title">Nos Prochains Événements</h2>
         <p class="section-subtitle">Découvrez nos soirées exclusives conçues pour des moments inoubliables</p>
         
         <div class="events-container">
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="./2.jpg" alt="ouidah_trip">
-                    <div class="event-badge">Nouveau</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title"><i class="fas fa-music"></i>OUIDAH TRIP </h3>
-                    <div class="event-date">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>20Juillet 2025-Depart 08H</span>
-                    </div>
-                    <div class="event-features">
-                        <div class="event-feature">Visite</div>
-                        <div class="event-feature">Divertissement à la plage </div>
-                        <div class="event-feature">Concours</div>
-                        <div class="event-feature">Jeux & Danse </div>
-                        <div class="event-feature">Résautage</div>
-                    </div>
-                    <div class="event-price">6000 FCFA <span style="color: aquamarine;">SOLO</span> <br> 10000 FCFA  <span style="color: aquamarine;">VIP</span></div>
-                    <a href="#contact" class="btn btn-rouge">Réserver maintenant</a>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="3.jpg" alt="Hydrokeke Vibes" >
-                    <div class="event-badge">Populaire</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title"><i class="fas fa-water"></i> GARI PARTY</h3>
-                    <div class="event-date">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>22 Septembre 2025 - Plage EREVAN(sous les filaos)</span>
-                    </div>
-                    <div class="event-features">
-                        <div class="event-feature">Jeux</div>
-                        <div class="event-feature">Animation</div>
-                        <div class="event-feature">résautage</div>
-                        <div class="event-feature">Concours du meilleur delayeur</div>
-                    </div>
-                    <div class="event-price">1000 FCFA</div>
-                    <a href="#contact" class="btn btn-rouge">Réserver maintenant</a>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="./4.jpg" alt="atasi-party">
-                    <div class="event-badge">Événement phare</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title"><i class="fas fa-umbrella-beach"></i> ATASSI PARTY</h3>
-                    <div class="event-date">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>06 Octobre 2025 - Plage EREVAN(sous les filaos)</span>
-                    </div>
-                    <div class="event-features">
-                        <div class="event-feature">Jeux</div>
-                        <div class="event-feature">Animation</div>
-                        <div class="event-feature">Resautage</div>
-                    </div>
-                    <div class="event-price">1000</div>
-                    <a href="#contact" class="btn btn-rouge">Réserver maintenant</a>
-                </div>
-            </div>
+            <?php
+            try {
+                // Récupérer les événements à venir
+                $stmt = $conn->prepare("SELECT * FROM evenements WHERE date >= CURDATE() ORDER BY date LIMIT 6");
+                $stmt->execute();
+                $evenements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($evenements as $event) {
+                    $badge = '';
+                    $badgeClass = '';
+                    
+                    // Déterminer le badge selon la date
+                    if (strtotime($event['date']) - time() < 86400 * 7) {
+                        $badge = 'Bientôt';
+                        $badgeClass = 'event-badge';
+                    } elseif ($event['places_disponibles'] < 20) {
+                        $badge = 'Presque complet';
+                        $badgeClass = 'event-badge';
+                    }
+                    
+                    echo '
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="uploads/evenements/' . htmlspecialchars($event['image']) . '" alt="' . htmlspecialchars($event['titre']) . '">';
+                    
+                    if ($badge) {
+                        echo '<div class="' . $badgeClass . '">' . $badge . '</div>';
+                    }
+                    
+                    echo '</div>
+                        <div class="event-content">
+                            <h3 class="event-title"><i class="fas ' . htmlspecialchars($event['icone']) . '"></i>' . htmlspecialchars($event['titre']) . '</h3>
+                            <div class="event-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>' . date('d F Y', strtotime($event['date'])) . ' - ' . htmlspecialchars($event['heure']) . '</span>
+                            </div>
+                            <div class="event-features">';
+                    
+                    // Afficher les caractéristiques
+                    $features = explode(';', $event['caracteristiques']);
+                    foreach ($features as $feature) {
+                        if (!empty(trim($feature))) {
+                            echo '<div class="event-feature">' . htmlspecialchars(trim($feature)) . '</div>';
+                        }
+                    }
+                    
+                    echo '</div>
+                            <div class="event-price">' . number_format($event['prix'], 0, ',', ' ') . ' FCFA</div>
+                            <div class="btn-container">
+                                <a href="tickets.php?event_id=' . $event['id'] . '" class="btn btn-vert">Acheter un ticket</a>
+                                <a href="#contact" class="btn btn-outline">Plus d\'infos</a>
+                            </div>
+                        </div>
+                    </div>';
+                }
+            } catch(PDOException $e) {
+                echo "Erreur: " . $e->getMessage();
+            }
+            ?>
         </div>
     </section>
 
- 
     <!-- Contact -->
     <section class="section" id="contact">
         <h2 class="section-title">Contactez-nous</h2>
@@ -1355,37 +1289,49 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
         
         <div class="contact-container">
             <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h3>Téléphone</h3>
-                        <p>+229 01 58 17 34 32</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h3>Email</h3>
-                        <p>info@dahomeytour.bj</p>
-                        <p>reservations@dahomeytour.bj</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h3>Adresse</h3>
-                        <p>Plage Fidjrossè, Cotonou, Bénin</p>
-                        <p>(près de l'avion)</p>
-                    </div>
-                </div>
+                <?php
+                try {
+                    // Récupérer les infos de contact
+                    $stmt = $conn->prepare("SELECT * FROM contact LIMIT 1");
+                    $stmt->execute();
+                    $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+                    
+                    if ($contact) {
+                        echo '
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Téléphone</h3>
+                                <p>' . htmlspecialchars($contact['telephone']) . '</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>' . htmlspecialchars($contact['email']) . '</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Adresse</h3>
+                                <p>' . htmlspecialchars($contact['adresse']) . '</p>
+                            </div>
+                        </div>';
+                    }
+                } catch(PDOException $e) {
+                    echo "Erreur: " . $e->getMessage();
+                }
+                ?>
                 
                 <div class="social-links">
                     <a href="https://facebook.com/profile.php?id=100092640841907" target="_blank" class="social-link">
@@ -1404,31 +1350,41 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
             </div>
             
             <div class="contact-form">
-                <form id="contactForm">
+                <form id="contactForm" action="envoyer_message.php" method="POST">
                     <div class="form-group">
                         <label for="name">Nom Complet</label>
-                        <input type="text" id="name" class="form-control" required>
+                        <input type="text" id="name" name="name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
+                        <input type="email" id="email" name="email" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" class="form-control">
+                        <input type="tel" id="phone" name="phone" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="event">Événement qui vous intéresse</label>
-                        <select id="event" class="form-control">
-                            <option value="after-party">After Party ACT6</option>
-                            <option value="hydrokeke">Hydrokeke Vibes</option>
-                            <option value="beach-fest">Beach Festival</option>
-                            <option value="other">Autre événement</option>
+                        <select id="event" name="event" class="form-control">
+                            <option value="">Sélectionnez un événement</option>
+                            <?php
+                            try {
+                                $stmt = $conn->prepare("SELECT id, titre FROM evenements WHERE date >= CURDATE() ORDER BY date");
+                                $stmt->execute();
+                                $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                
+                                foreach ($events as $event) {
+                                    echo '<option value="' . $event['id'] . '">' . htmlspecialchars($event['titre']) . '</option>';
+                                }
+                            } catch(PDOException $e) {
+                                echo "Erreur: " . $e->getMessage();
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
                     </div>
                     <button type="submit" class="btn">Envoyer Message</button>
                 </form>
@@ -1466,19 +1422,26 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
                     <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
                     <li><a href="#galerie"><i class="fas fa-camera"></i> Galerie</a></li>
                     <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="tickets.php"><i class="fas fa-ticket-alt"></i> Acheter Tickets</a></li>
                 </ul>
             </div>
             
             <div class="footer-col">
                 <h3>Événements à Venir</h3>
                 <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-music"></i> After Party ACT6</a></li>
-                    <li><a href="#"><i class="fas fa-water"></i> Hydrokeke Vibes</a></li>
-                    <li><a href="#"><i class="fas fa-umbrella-beach"></i> Beach Festival</a></li>
-                    <li><a href="#"><i class="fas fa-cocktail"></i> Soirée Cocktails</a></li>
-                    
-                    <li><a href="#"><i class="fas fa-fire"></i> atassi party</a></li>
-                    <li><a href="#"><i class="fas fa-fire"></i> Gari party</a></li>
+                    <?php
+                    try {
+                        $stmt = $conn->prepare("SELECT id, titre FROM evenements WHERE date >= CURDATE() ORDER BY date LIMIT 5");
+                        $stmt->execute();
+                        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        foreach ($events as $event) {
+                            echo '<li><a href="tickets.php?event_id=' . $event['id'] . '"><i class="fas fa-music"></i> ' . htmlspecialchars($event['titre']) . '</a></li>';
+                        }
+                    } catch(PDOException $e) {
+                        echo "Erreur: " . $e->getMessage();
+                    }
+                    ?>
                 </ul>
             </div>
             
@@ -1497,6 +1460,11 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
             <p>&copy; 2025 Dahomey Tour. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color:#E8112D"></i> pour des moments inoubliables</p>
         </div>
     </footer>
+
+    <!-- Lien Admin -->
+    <a href="admin.php" class="admin-link">
+        <i class="fas fa-cog"></i> Administration
+    </a>
 
     <!-- Scripts -->
     <script>
@@ -1561,101 +1529,50 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
         // Animation des liens de navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Effet de survol sur les cartes
-        const cards = document.querySelectorAll('.event-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = (x - centerX) / 25;
-                const rotateX = (centerY - y) / 25;
-                
-                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`;
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                if (this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
 
         // Gestion du formulaire de contact
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Animation de confettis
-            createConfetti();
-            
-            // Message de succès
-            setTimeout(() => {
-                alert('Merci pour votre message ! Nous vous contacterons très bientôt pour confirmer votre réservation.');
-                contactForm.reset();
-            }, 1000);
-        });
-
-        // Fonction pour créer des confettis
-        function createConfetti() {
-            const colors = ['#008751', '#FCD116', '#E8112D', '#006B41', '#C60E26'];
-            
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                // Position aléatoire
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-10px';
+                // Récupérer les données du formulaire
+                const formData = new FormData(this);
                 
-                // Couleur aléatoire
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Taille aléatoire
-                const size = Math.random() * 10 + 5;
-                confetti.style.width = size + 'px';
-                confetti.style.height = size + 'px';
-                
-                // Animation
-                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                
-                document.body.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-            
-            // Ajout de l'animation
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes fall {
-                    0% {
-                        transform: translateY(0) rotate(0deg);
-                        opacity: 1;
+                // Envoyer les données via AJAX
+                fetch('envoyer_message.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        contactForm.reset();
+                    } else {
+                        alert('Erreur: ' + data.message);
                     }
-                    100% {
-                        transform: translateY(100vh) rotate(${Math.random() * 360}deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    alert('Une erreur est survenue. Veuillez réessayer.');
+                });
+            });
         }
 
         // Gestion de la galerie modale
@@ -1665,100 +1582,36 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
         const closeBtn = document.querySelector('.close-modal');
         const viewButtons = document.querySelectorAll('.view-photos');
         
-        // Données pour les galeries d'événements
-        const eventGalleries = {
-            'hydrokeke-2024': {
-                name: 'Hydrokeke Vibes 2024',
-                photos: [
-                    './10.jpg',
-                    './11.jpg',
-                    './9.jpg',
-                    './12.jpg',
-                ]
-            },
-            'independance-2024': {
-                name: 'Fête de l\'Indépendance 2025',
-                photos: [
-                    './13.jpg',
-                    './14.jpg',
-                    './15.jpg',
-                    './16.jpg',
-                    './17.jpg',
-                    './18.jpg',
-                    './19.jpg',
-                    './20.jpg',
-                    './22.jpg',
-
-
-
-                ]
-            },
-            'beach-2023': {
-                name: 'Beach Festival 2023',
-                photos: [
-                    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                    'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80',
-                    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80'
-                ]
-            },
-            'vip-2024': {
-                name: 'Soirée VIP Exclusive',
-                photos: [
-                    'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80',
-                    'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-                ]
-            },
-            'concert-2024': {
-                name: 'Concert Live: Stars du Bénin',
-                photos: [
-                    'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80'
-                ]
-            },
-            'jeunesse-2024': {
-                name: 'Fête de la Jeunesse 2024',
-                photos: [
-                    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80',
-                    'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80',
-                    'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80'
-                ]
-            }
-        };
-
         // Ouvrir la modal
         viewButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const eventId = this.getAttribute('data-event');
-                const eventData = eventGalleries[eventId];
                 
-                if (eventData) {
-                    modalTitle.textContent = eventData.name;
-                    modalContent.innerHTML = '';
-                    
-                    eventData.photos.forEach(photo => {
-                        const photoElement = document.createElement('div');
-                        photoElement.className = 'modal-photo';
-                        photoElement.innerHTML = `<img src="${photo}" alt="${eventData.name}">`;
-                        modalContent.appendChild(photoElement);
+                // Récupérer les photos de l'événement via AJAX
+                fetch('get_photos.php?event_id=' + eventId)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            modalTitle.textContent = data.event_name;
+                            modalContent.innerHTML = '';
+                            
+                            data.photos.forEach(photo => {
+                                const photoElement = document.createElement('div');
+                                photoElement.className = 'modal-photo';
+                                photoElement.innerHTML = `<img src="uploads/galerie/${photo}" alt="${data.event_name}">`;
+                                modalContent.appendChild(photoElement);
+                            });
+                            
+                            modal.style.display = 'block';
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            alert('Erreur: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        alert('Une erreur est survenue lors du chargement des photos.');
                     });
-                    
-                    modal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
             });
         });
 
@@ -1802,3 +1655,7 @@ Sur les plages, dans les rues ou au cœur de l’histoire, on transforme chaque 
     </script>
 </body>
 </html>
+<?php
+// Fermer la connexion à la base de données
+$conn = null;
+?>
